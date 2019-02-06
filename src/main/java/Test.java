@@ -4,7 +4,7 @@ import com.taverok.vast.v2.elements.Vast;
 import com.taverok.vast.service.XmlService;
 import com.taverok.vast.v2.elements.events.TrackingEvent;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -14,7 +14,9 @@ public class Test {
 
         Ad ad = Ad.newInline("42343242", "http://somelink.test");
 
-        List<TrackingEvent> trackingEvents = Collections.singletonList(new TrackingEvent("firstQuartile", "showUrl"));
+        List<TrackingEvent> trackingEvents = Arrays.asList(
+                new TrackingEvent(TrackingEvent.Events.FIRST_QUARTILE.getEventAttr(), "showUrl")
+        );
 
         Creative creative = Creative.builder().id("Preroll_id").sequence(1).build();
         creative.getLinear().setTrackingEvents(trackingEvents);

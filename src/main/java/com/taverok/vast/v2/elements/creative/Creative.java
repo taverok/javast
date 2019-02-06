@@ -6,6 +6,7 @@ import lombok.Getter;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 @Getter
 @Builder
@@ -17,5 +18,6 @@ public class Creative {
     @XmlAttribute
     private int sequence;
 
+    @XmlElement(name = "Linear")
     private final Linear linear = new Linear();
 }
