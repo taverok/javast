@@ -38,6 +38,11 @@ vast.newAd()
         .addCreatives(Arrays.asList(creative, anotherCreative));
 ```
 
+### No ads
+```
+vast.newAd().noAds();
+```
+
 ### Serialize
 ```
 XmlService xmlService = new XmlService();

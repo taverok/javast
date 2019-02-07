@@ -27,4 +27,13 @@ public class Ad {
 
         return inLine;
     }
+
+    public void noAds(){
+        error("No ads");
+    }
+
+    public void error(String error){
+        inLine = new InLine();
+        inLine.setError(error);
+    }
 }

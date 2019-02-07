@@ -30,6 +30,9 @@ public class InLine {
     private List<Creative> creatives = new ArrayList<>();
 
 
+    @XmlElement(name = "Error")
+    private String error;
+
     public InLine addCreative(Creative c){
         c.setSequence(creatives.size()+1);
         creatives.add(c);
