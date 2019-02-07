@@ -24,9 +24,14 @@ public class Linear {
     @XmlElement(name = "VideoClicks")
     private VideoClicks videoClicks;
 
+    @XmlElementWrapper(name = "MediaFiles")
+    @XmlElement(name = "MediaFile")
+    private List<MediaFile> mediaFiles;
+
     public Linear() {
         trackingEvents = new ArrayList<>();
         videoClicks = new VideoClicks();
+        mediaFiles = new ArrayList<>();
     }
 
     public Linear(String duration){

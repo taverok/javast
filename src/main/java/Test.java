@@ -2,8 +2,6 @@ import com.taverok.javast.domain.v2.creative.Creative;
 import com.taverok.javast.domain.v2.Vast;
 import com.taverok.javast.service.XmlService;
 
-import java.util.Arrays;
-
 import static com.taverok.javast.domain.v2.event.TrackingEvent.Events.*;
 
 
@@ -12,18 +10,13 @@ public class Test {
 
         Creative creative = new Creative("prerollId", "00:00:15")
                 .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-                .addClickCallback("http://clickUrl");
-        Creative anotherCreative = new Creative("prerollId", "00:00:15")
-                .addTrackingCallback(START, "http://playUrl")
-                .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-                .addTrackingCallback(PAUSE, "http://playUrl")
-                .addClickCallback("http://clickUrl");
+                .addClickCallback("http://clickUrl")
+                .addMedia("http://mediaUrl", 1280, 720);
 
         Vast vast = new Vast("2.0");
         vast.newAd()
                 .newInline("http://impressionUrl", "Advertisement", "AdService")
-                .addCreative(creative)
-                .addCreatives(Arrays.asList(creative, anotherCreative));
+                .addCreative(creative);
 
         XmlService xmlService = new XmlService();
         String xml = xmlService.getXml(vast);
