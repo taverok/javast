@@ -29,7 +29,6 @@ public class InLine {
     @XmlElement(name = "Creative")
     private List<Creative> creatives = new ArrayList<>();
 
-
     @XmlElement(name = "Error")
     private String error;
 

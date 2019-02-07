@@ -9,8 +9,8 @@ Creative creative = new Creative("prerollId", "00:00:15")
         .addClickCallback("http://clickUrl")
         .addMedia("http://mediaUrl", 1280, 720);
         
-Vast vast = new Vast("2.0");
-vast.newAd()
+Vast vast = new Vast(V2_0);
+vast.newAd("122222")
         .newInline("http://impressionUrl", "Advertisement", "AdService")
         .addCreative(creative);
 ```
@@ -32,15 +32,15 @@ Creative anotherCreative = new Creative("prerollId", "00:00:15")
         .addTrackingCallback(PAUSE, "http://playUrl")
         .addMedia(m);
         
-Vast vast = new Vast("2.0");
-vast.newAd()
+Vast vast = new Vast(V2_0);
+vast.newAd("122222")
         .newInline("http://impressionUrl", "Advertisement", "AdService")
         .addCreatives(Arrays.asList(creative, anotherCreative));
 ```
 
 ### No ads
 ```
-vast.newAd().noAds();
+vast.noAds();
 ```
 
 ### Serialize
@@ -53,3 +53,4 @@ String xml = xmlService.getXml(vast);
 - https://raw.githubusercontent.com/InteractiveAdvertisingBureau/vast/master/vast_2.0.1.xsd
 - https://www.iab.com/wp-content/uploads/2015/11/VAST-2_0-FINAL.pdf
 - https://www.iab.com/wp-content/uploads/2015/06/VASTv3_0.pdf
+- https://www.iab.com/insights/vast-2-0-xml-samples-for-testing/
