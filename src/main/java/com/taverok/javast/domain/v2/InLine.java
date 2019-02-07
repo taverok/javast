@@ -1,6 +1,6 @@
-package com.taverok.vast.v2.elements;
+package com.taverok.javast.domain.v2;
 
-import com.taverok.vast.v2.elements.creative.Creative;
+import com.taverok.javast.domain.v2.creative.Creative;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,23 +27,19 @@ public class InLine {
 
     @XmlElementWrapper(name="Creatives")
     @XmlElement(name = "Creative")
-    private List<Creative> creatives;
+    private List<Creative> creatives = new ArrayList<>();
 
-    public static InLine newWithDefaults(String impression){
-        InLine inLine = new InLine();
-        inLine.setAdSystem(AdSystem.builder().version("1.0.0").content("AdServer").build());
-        inLine.setAdTitle("Advertisement");
-        inLine.setImpression(impression);
 
-        inLine.creatives = new ArrayList<>();
+    public InLine addCreative(Creative c){
+        c.setSequence(creatives.size()+1);
+        creatives.add(c);
 
-        return inLine;
+        return this;
     }
 
-    public void addCreative(Creative c){
-        if (null==creatives)
-            creatives = new ArrayList<>();
+    public InLine addCreatives(List<Creative> list){
+        list.forEach(this::addCreative);
 
-        creatives.add(c);
+        return this;
     }
 }

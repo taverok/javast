@@ -1,4 +1,4 @@
-package com.taverok.vast.v2.elements;
+package com.taverok.javast.domain.v2;
 
 import lombok.Builder;
 

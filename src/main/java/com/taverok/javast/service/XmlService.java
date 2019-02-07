@@ -1,4 +1,4 @@
-package com.taverok.vast.service;
+package com.taverok.javast.service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
