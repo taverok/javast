@@ -5,6 +5,7 @@ import lombok.*;
 import javax.xml.bind.annotation.*;
 
 
+@Data
 @NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "VAST")
@@ -44,7 +45,8 @@ public class Vast {
 
 
     public Ad newAd(String id){
-        return new Ad(id);
+        ad = new Ad(id);
+        return ad;
     }
 
     public void noAds(){

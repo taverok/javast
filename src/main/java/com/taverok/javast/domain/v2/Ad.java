@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.xml.bind.annotation.*;
 
+@Data
 @NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Ad {

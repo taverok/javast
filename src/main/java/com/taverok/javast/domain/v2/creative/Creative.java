@@ -3,6 +3,7 @@ package com.taverok.javast.domain.v2.creative;
 import com.taverok.javast.domain.v2.event.TrackingEvent;
 import com.taverok.javast.domain.v2.event.click.ClickThrough;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Getter
 @XmlAccessorType(XmlAccessType.FIELD)
+@NoArgsConstructor
 public class Creative {
     @XmlAttribute
     private String id;
@@ -22,7 +24,7 @@ public class Creative {
     private int sequence;
 
     @XmlElement(name = "Linear")
-    private final Linear linear;
+    private Linear linear;
 
     public Creative(String id, String duration) {
         this.id = id;
