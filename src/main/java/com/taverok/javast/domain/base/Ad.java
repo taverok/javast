@@ -9,11 +9,11 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Ad {
     @XmlAttribute
-    private String id;
+    protected String id;
 
     @XmlElement(name = "InLine")
     @NonNull
-    private InLine inLine;
+    protected InLine inLine;
 
     public Ad(String id) {
         this.id = id;

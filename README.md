@@ -7,9 +7,10 @@ Library for creating VAST compatible ads and serializing them to XML
 Creative creative = new Creative("prerollId", "00:00:15")
         .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
         .addClickCallback("http://clickUrl")
-        .addMedia("http://mediaUrl", 1280, 720);
+        .addMedia("http://mediaUrl", 1280, 720)
+        .addCustomCallback(new TrackingEvent(SKIP, "http://playUrl"));
         
-Vast vast = new Vast(V2_0);
+Vast vast = VastFactory.getInstance(Version.V2_0);
 vast.newAd("122222")
         .newInline("http://impressionUrl", "Advertisement", "AdService")
         .addCreative(creative);
@@ -32,7 +33,7 @@ Creative anotherCreative = new Creative("prerollId", "00:00:15")
         .addTrackingCallback(PAUSE, "http://playUrl")
         .addMedia(m);
         
-Vast vast = new Vast(V2_0);
+Vast vast = VastFactory.getInstance(Version.V2_0);
 vast.newAd("122222")
         .newInline("http://impressionUrl", "Advertisement", "AdService")
         .addCreatives(Arrays.asList(creative, anotherCreative));

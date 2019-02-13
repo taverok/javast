@@ -15,10 +15,10 @@ public class Vast {
     protected String version;
 
     @XmlElement(name = "Ad")
-    private Ad ad;
+    protected Ad ad;
 
     @XmlElement(name = "Error")
-    private String error;
+    protected String error;
 
     {
         version="2.0";

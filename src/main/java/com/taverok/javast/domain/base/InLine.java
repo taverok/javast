@@ -1,6 +1,8 @@
 package com.taverok.javast.domain.base;
 
 import com.taverok.javast.domain.base.creative.Creative;
+import com.taverok.javast.domain.base.event.TrackingEvent;
+import com.taverok.javast.domain.base.extension.Extension;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,6 +31,10 @@ public class InLine {
     @XmlElement(name = "Creative")
     private List<Creative> creatives = new ArrayList<>();
 
+    @XmlElementWrapper(name="Extensions")
+    @XmlElement(name = "Extension")
+    private List<Extension> extension = new ArrayList<>();
+
     @XmlElement(name = "Error")
     private String error;
 
@@ -41,6 +47,20 @@ public class InLine {
 
     public InLine addCreatives(List<Creative> list){
         list.forEach(this::addCreative);
+
+        return this;
+    }
+
+    public InLine addExtension(Extension ex){
+        extension.add(ex);
+
+        return this;
+    }
+
+    public InLine addCustomCallback(TrackingEvent e){
+        Extension extension = new Extension();
+        extension.addCusctomCallback(e);
+        addExtension(extension);
 
         return this;
     }

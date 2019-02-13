@@ -25,6 +25,7 @@ import java.io.*;
 
 import static com.taverok.javast.domain.Version.V2_0;
 import static com.taverok.javast.domain.base.event.TrackingEvent.Events.FIRST_QUARTILE;
+import static com.taverok.javast.domain.base.event.TrackingEvent.Events.SKIP;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -50,7 +51,8 @@ public class V2SerializationTest {
                 .addMedia("http://mediaUrl", 1280, 720);
         originalVast.newAd(adId)
                 .newInline("http://impressionUrl", "Advertisement", "AdService")
-                .addCreative(creative);
+                .addCreative(creative)
+                .addCustomCallback(new TrackingEvent(SKIP, "http://playUrl"));
 
         JAXBContext context = JAXBContext.newInstance(Vast.class);
         marshaller = context.createMarshaller();

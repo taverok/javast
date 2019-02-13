@@ -33,7 +33,9 @@ public class TrackingEvent {
         EXPAND("expand"),
         COLLAPSE("collapse"),
         ACCEPT_INVITATION("acceptInvitation"),
-        CLOSE("close");
+        CLOSE("close"),
+
+        SKIP("skip");
 
         private String eventAttr;
 
