@@ -1,4 +1,4 @@
-package com.taverok.javast.domain.v2;
+package com.taverok.javast.domain.base;
 
 import lombok.*;
 

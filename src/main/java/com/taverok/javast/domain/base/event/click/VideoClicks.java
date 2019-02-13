@@ -1,4 +1,4 @@
-package com.taverok.javast.domain.v2.event.click;
+package com.taverok.javast.domain.base.event.click;
 
 import lombok.Data;
 

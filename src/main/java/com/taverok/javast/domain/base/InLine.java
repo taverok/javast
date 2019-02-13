@@ -1,6 +1,6 @@
-package com.taverok.javast.domain.v2;
+package com.taverok.javast.domain.base;
 
-import com.taverok.javast.domain.v2.creative.Creative;
+import com.taverok.javast.domain.base.creative.Creative;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;

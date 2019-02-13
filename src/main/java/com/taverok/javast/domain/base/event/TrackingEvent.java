@@ -1,4 +1,4 @@
-package com.taverok.javast.domain.v2.event;
+package com.taverok.javast.domain.base.event;
 
 import lombok.NoArgsConstructor;
 

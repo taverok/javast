@@ -1,14 +1,15 @@
 package com.taverok.javast;
 
-import com.taverok.javast.domain.v2.Ad;
-import com.taverok.javast.domain.v2.AdSystem;
-import com.taverok.javast.domain.v2.InLine;
-import com.taverok.javast.domain.v2.Vast;
-import com.taverok.javast.domain.v2.creative.Creative;
-import com.taverok.javast.domain.v2.creative.Linear;
-import com.taverok.javast.domain.v2.creative.MediaFile;
-import com.taverok.javast.domain.v2.event.TrackingEvent;
-import com.taverok.javast.domain.v2.event.click.ClickThrough;
+import com.taverok.javast.domain.base.Ad;
+import com.taverok.javast.domain.base.AdSystem;
+import com.taverok.javast.domain.base.InLine;
+import com.taverok.javast.domain.base.Vast;
+import com.taverok.javast.domain.base.creative.Creative;
+import com.taverok.javast.domain.base.creative.Linear;
+import com.taverok.javast.domain.base.creative.MediaFile;
+import com.taverok.javast.domain.base.event.TrackingEvent;
+import com.taverok.javast.domain.base.event.click.ClickThrough;
+import com.taverok.javast.service.VastFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -22,8 +23,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.*;
 
-import static com.taverok.javast.domain.v2.Vast.Versions.V2_0;
-import static com.taverok.javast.domain.v2.event.TrackingEvent.Events.FIRST_QUARTILE;
+import static com.taverok.javast.domain.Version.V2_0;
+import static com.taverok.javast.domain.base.event.TrackingEvent.Events.FIRST_QUARTILE;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -32,7 +33,7 @@ public class V2SerializationTest {
     final String V2_SCHEMA_PATH = "vastV2.xml";
     File schemaFile;
 
-    Vast originalVast = new Vast(V2_0);
+    Vast originalVast = VastFactory.getInstance(V2_0);
     String adId = "testing_ad_123";
 
     Unmarshaller unmarshaller;

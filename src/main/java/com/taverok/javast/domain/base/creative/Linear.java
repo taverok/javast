@@ -1,7 +1,7 @@
-package com.taverok.javast.domain.v2.creative;
+package com.taverok.javast.domain.base.creative;
 
-import com.taverok.javast.domain.v2.event.TrackingEvent;
-import com.taverok.javast.domain.v2.event.click.VideoClicks;
+import com.taverok.javast.domain.base.event.TrackingEvent;
+import com.taverok.javast.domain.base.event.click.VideoClicks;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAccessType;
