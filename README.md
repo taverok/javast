@@ -1,4 +1,4 @@
-![](https://img.shields.io/maven-central/v/com.taverok/javast.svg?style=flat&colorA=006400&colorB=8b8b83&url=https://search.maven.org/artifact/com.taverok/javast/1.0.0/jar)
+![https://search.maven.org/artifact/com.taverok/javast/1.0.0/jar](https://img.shields.io/maven-central/v/com.taverok/javast.svg?style=flat&colorA=006400&colorB=8b8b83)
 
 # About
 Library for creating VAST compatible ads and serializing them to XML 
