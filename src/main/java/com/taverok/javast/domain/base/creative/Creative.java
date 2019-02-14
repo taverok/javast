@@ -2,7 +2,7 @@ package com.taverok.javast.domain.base.creative;
 
 import com.taverok.javast.domain.base.event.TrackingEvent;
 import com.taverok.javast.domain.base.event.click.ClickThrough;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
-@Getter
-@XmlAccessorType(XmlAccessType.FIELD)
+@Data
 @NoArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Creative {
     @XmlAttribute
     private String id;
@@ -26,9 +26,15 @@ public class Creative {
     @XmlElement(name = "Linear")
     private Linear linear;
 
-    public Creative(String id, String duration) {
+    public Creative(String id) {
         this.id = id;
-        linear = new Linear(duration);
+    }
+
+    public static Creative newLinear(String id, String duration) {
+        Creative creative = new Creative(id);
+        creative.linear = new Linear(duration);
+
+        return creative;
     }
 
     public Creative addTrackingCallback(TrackingEvent.Events event, String url){
@@ -37,7 +43,7 @@ public class Creative {
         return this;
     }
 
-    public Creative addClickCallback(String url){
+    public Creative addClickThrough(String url){
         linear.getVideoClicks().setClickThrough(new ClickThrough(url));
 
         return this;

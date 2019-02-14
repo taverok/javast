@@ -19,18 +19,22 @@ public class Ad {
         this.id = id;
     }
 
+    protected InLine getNewInline(){
+        return new InLine();
+    }
+
     public InLine newInline(String impressionUrl, String title, String adSystem){
-        inLine = new InLine();
+        inLine = getNewInline();
         inLine.setAdSystem(AdSystem.builder().version("1.0.0").content(adSystem).build());
         inLine.setAdTitle(title);
         inLine.setDescription(title);
-        inLine.setImpression(impressionUrl);
+        inLine.getImpression().add(impressionUrl);
 
         return inLine;
     }
 
     public void error(String error){
-        inLine = new InLine();
+        inLine = getNewInline();
         inLine.setError(error);
     }
 }

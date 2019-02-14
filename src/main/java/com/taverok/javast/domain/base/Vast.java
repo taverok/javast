@@ -1,6 +1,7 @@
 package com.taverok.javast.domain.base;
 
 
+import com.taverok.javast.domain.Version;
 import lombok.*;
 import javax.xml.bind.annotation.*;
 
@@ -10,6 +11,10 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "VAST")
 public class Vast {
+    @Getter
+    @XmlTransient
+    private Version ver;
+
     @NonNull
     @XmlAttribute(name = "version")
     protected String version;
@@ -20,8 +25,9 @@ public class Vast {
     @XmlElement(name = "Error")
     protected String error;
 
-    {
-        version="2.0";
+    public Vast(Version ver) {
+        this.ver = ver;
+        this.version = ver.getStr();
     }
 
     public Ad newAd(String id){

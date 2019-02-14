@@ -9,7 +9,6 @@ import com.taverok.javast.domain.base.creative.Linear;
 import com.taverok.javast.domain.base.creative.MediaFile;
 import com.taverok.javast.domain.base.event.TrackingEvent;
 import com.taverok.javast.domain.base.event.click.ClickThrough;
-import com.taverok.javast.service.VastFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -23,7 +22,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.*;
 
-import static com.taverok.javast.domain.Version.V2_0;
+import static com.taverok.javast.domain.Version.V3_0;
 import static com.taverok.javast.domain.base.event.TrackingEvent.Events.FIRST_QUARTILE;
 import static com.taverok.javast.domain.base.event.TrackingEvent.Events.SKIP;
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,7 +33,7 @@ public class V2SerializationTest {
     final String V2_SCHEMA_PATH = "vastV2.xml";
     File schemaFile;
 
-    Vast originalVast = VastFactory.getInstance(V2_0);
+    Vast originalVast = new Vast(V3_0);
     String adId = "testing_ad_123";
 
     Unmarshaller unmarshaller;
@@ -45,9 +44,9 @@ public class V2SerializationTest {
     public void init() throws JAXBException, SAXException {
         schemaFile = new File(getClass().getClassLoader().getResource(V2_SCHEMA_PATH).getFile());
 
-        Creative creative = new Creative("prerollId", "00:00:15")
+        Creative creative = Creative.newLinear("prerollId", "00:00:15")
                 .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-                .addClickCallback("http://clickUrl")
+                .addClickThrough("http://clickUrl")
                 .addMedia("http://mediaUrl", 1280, 720);
         originalVast.newAd(adId)
                 .newInline("http://impressionUrl", "Advertisement", "AdService")
@@ -69,6 +68,8 @@ public class V2SerializationTest {
         StringWriter vastStream = new StringWriter();
         marshaller.marshal(originalVast, vastStream);
 
+        System.out.println(vastStream);
+
         assertTrue(vastStream.toString().length() > 500);
     }
 
@@ -87,7 +88,7 @@ public class V2SerializationTest {
 
     @Test
     public void testEntitiesHasNoArgsConstructor(){
-        assertNotNull(new Vast());
+        assertNotNull(new Vast(V3_0));
         assertNotNull(new InLine());
         assertNotNull(new AdSystem());
         assertNotNull(new Ad());

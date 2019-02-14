@@ -25,7 +25,7 @@ public class InLine {
     private String description;
 
     @XmlElement(name = "Impression")
-    private String impression;
+    private List<String> impression = new ArrayList<>();
 
     @XmlElementWrapper(name="Creatives")
     @XmlElement(name = "Creative")

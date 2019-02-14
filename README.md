@@ -4,50 +4,33 @@ Library for creating VAST compatible ads and serializing them to XML
 # Usage
 ### One simple ad
 ```
-Creative creative = new Creative("prerollId", "00:00:15")
-        .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-        .addClickCallback("http://clickUrl")
-        .addMedia("http://mediaUrl", 1280, 720)
-        .addCustomCallback(new TrackingEvent(SKIP, "http://playUrl"));
-        
-Vast vast = VastFactory.getInstance(Version.V2_0);
-vast.newAd("122222")
-        .newInline("http://impressionUrl", "Advertisement", "AdService")
-        .addCreative(creative);
-```
+        Version version = Version.V3_0;
+        String prerollDuration = vastService.durationToString(15);
 
-### Many ads and events
-```
-Creative creative = new Creative("prerollId", "00:00:15")
-        .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-        .addClickCallback("http://clickUrl")
-        .addMedias(Arrays.asList("http://mediaUrl", "http://mediaUrl", "http://mediaUrl"), 1280, 720);
-        
-MediaFile m = new MediaFile("http://mediaUrl", 1280, 720);
-m.setType("video/webm");
-m.setScalable(false);
+        Creative creative = Creative.newLinear("prerollId", prerollDuration);
+        creative.getLinear().setSkipoffset("00:00:05", version);
 
-Creative anotherCreative = new Creative("prerollId", "00:00:15")
-        .addTrackingCallback(START, "http://playUrl")
-        .addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
-        .addTrackingCallback(PAUSE, "http://playUrl")
-        .addMedia(m);
-        
-Vast vast = VastFactory.getInstance(Version.V2_0);
-vast.newAd("122222")
-        .newInline("http://impressionUrl", "Advertisement", "AdService")
-        .addCreatives(Arrays.asList(creative, anotherCreative));
+        creative.addTrackingCallback(FIRST_QUARTILE, "http://playUrl")
+                .addTrackingCallback(SKIP, "http://playUrl")
+                .addClickThrough("http://clickUrl")
+                .addMedia("http://mediaUrl", 1280, 720);
+
+        Vast vast = new Vast(version);
+        vast.newAd("122222")
+                .newInline("http://impressionUrl", "Advertisement", "AdService")
+                //.addCustomCallback(new TrackingEvent(SKIP, "http://playUrl")) for version < 3.0
+                .addCreative(creative);
 ```
 
 ### No ads
 ```
-vast.noAds();
+    vast.noAds();
 ```
 
 ### Serialize
 ```
-XmlService xmlService = new XmlService();
-String xml = xmlService.getXml(vast);
+    XmlService xmlService = new XmlService();
+    String xml = xmlService.getXml(vast);
 ```
 
 # Links
